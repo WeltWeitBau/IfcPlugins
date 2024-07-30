@@ -293,7 +293,8 @@ public abstract class IfcStepStreamingDeserializer implements StreamingDeseriali
 			new IfcHeaderParser().parseFileSchema(fileschema.substring(1, fileschema.length() - 2), ifcHeader, lineNumber);
 
 			String ifcSchemaVersion = ifcHeader.getIfcSchemaVersion();
-			if (!ifcSchemaVersion.toLowerCase().equalsIgnoreCase(schema.getHeaderName().toLowerCase())) {
+			Schema schemaFromHeader = Schema.fromIfcHeader(ifcSchemaVersion);
+			if (!schemaFromHeader.equals(schema)) {
 				throw new DeserializeException(DeserializerErrorCode.IFC_SCHEMA_NOT_SUPPORTED_BY_DESERIALIZER, lineNumber, ifcSchemaVersion + " is not supported by this deserializer (" + schema.getHeaderName() + " is)");
 			}
 			ifcHeader.setIfcSchemaVersion(ifcSchemaVersion);

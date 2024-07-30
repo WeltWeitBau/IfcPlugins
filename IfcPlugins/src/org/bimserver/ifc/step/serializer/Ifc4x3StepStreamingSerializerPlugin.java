@@ -1,6 +1,4 @@
-package org.bimserver.deserializers;
-
-import java.util.HashSet;
+package org.bimserver.ifc.step.serializer;
 
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
@@ -22,41 +20,24 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.bimserver.emf.Schema;
-import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginContext;
-import org.bimserver.plugins.deserializers.Deserializer;
-import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.shared.exceptions.PluginException;
+import org.bimserver.plugins.SchemaName;
+import org.bimserver.plugins.serializers.StreamingSerializer;
 
-public class JsonDeserializerPlugin implements DeserializerPlugin {
+public class Ifc4x3StepStreamingSerializerPlugin extends IfcStepStreamingSerializerPlugin {
 
 	@Override
-	public void init(PluginContext pluginContext, PluginConfiguration systemSettings) throws PluginException {
-	}
-
-	@Override
-	public ObjectDefinition getUserSettingsDefinition() {
-		return null;
-	}
-	
-	@Override
-	public ObjectDefinition getSystemSettingsDefinition() {
-		return null;
-	}
-
-	@Override
-	public Deserializer createDeserializer(PluginConfiguration pluginConfiguration) {
-		return new JsonDeserializer();
-	}
-
-	@Override
-	public boolean canHandleExtension(String extension) {
-		return extension.equals("json");
+	public StreamingSerializer createSerializer(PluginConfiguration pluginConfiguration) {
+		return new Ifc4StepStreamingSerializer(pluginConfiguration);
 	}
 
 	@Override
 	public Set<Schema> getSupportedSchemas() {
-		return Schema.getIfcSchemas();
+		return Schema.IFC4X3.toSet();
+	}
+
+	@Override
+	public String getOutputFormat(Schema schema) {
+		return SchemaName.IFC_STEP_4X3.name();
 	}
 }

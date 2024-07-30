@@ -49,6 +49,18 @@
 		<name>Ifc4 (Streaming)</name>
 	</JavaPlugin>
 	<JavaPlugin>
+		<interfaceClass>org.bimserver.plugins.serializers.StreamingSerializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.ifc.step.serializer.Ifc4x3StepStreamingSerializerPlugin</implementationClass>
+		<description>Ifc4x3 Streaming Serializer</description>
+		<name>Ifc4x3 (Streaming)</name>
+	</JavaPlugin>
+	<JavaPlugin>
+		<interfaceClass>org.bimserver.plugins.deserializers.StreamingDeserializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.ifc.step.deserializer.Ifc4x3StepStreamingDeserializerPlugin</implementationClass>
+		<description>Ifc4x3 Step Streaming Deserializer</description>
+		<name>Ifc4x3 (Streaming)</name>
+	</JavaPlugin>
+	<JavaPlugin>
 		<interfaceClass>org.bimserver.plugins.deserializers.StreamingDeserializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.ifc.step.deserializer.Ifc2x3tc1StepStreamingDeserializerPlugin</implementationClass>
 		<description>Ifc2x3tc1 Step Streaming Deserializer</description>
